@@ -1,3 +1,4 @@
+// all the global varibale and DOM element
 let userScore = 0;
 let computerScore = 0;
 let moves = 0;
@@ -10,12 +11,14 @@ const paper_div = document.getElementById('p');
 const scissors_div = document.getElementById('s');
 const countMessage_p = document.getElementById('action-message');
 
+//random letter
 const getComputerChoice = () => {
     const choices  = ['r','p','s']
     const randonNumber = Math.floor(Math.random() * 3);
     return choices [randonNumber];
 }
 
+//letter to word
 const convertToWord = (letter) => {
      if (letter === 'r') {
          return 'Rock';
@@ -26,6 +29,8 @@ const convertToWord = (letter) => {
      return 'Scissor';
 }
 
+
+//chhange of score and DOM
 const win = (userChoice, computerChoice) => {
     userScore ++;
     userScore_span.innerHTML = userScore;
@@ -45,6 +50,8 @@ const draw = (userChoice, computerChoice) => {
     convertToWord(userChoice) + ' /  Bot = ' + convertToWord(computerChoice);
 }
 
+
+//comparing with Computer and User Input
 const game = (userChoice) => {
     const computerChoice = getComputerChoice();
     switch (userChoice + computerChoice) {
@@ -72,6 +79,8 @@ const game = (userChoice) => {
     }
 }
 
+
+//call the value from the button
 const main = () => {
 rock_div.addEventListener('click', function(){
     game('r');
