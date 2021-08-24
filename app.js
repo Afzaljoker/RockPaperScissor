@@ -37,6 +37,9 @@ const win = (userChoice, computerChoice) => {
     computerScore_span.innerHTML = computerScore;
     result_div.innerHTML = 'User Won and the Call was ' + "<br>" +'User = ' +
                             convertToWord(userChoice) + ' /  Bot = ' + convertToWord(computerChoice);
+    document.getElementById(userChoice).classList.add('green-glow');
+    setTimeout(() => { document.getElementById(userChoice).classList.remove('green-glow') }, 500);
+
 }
 const lose = (userChoice, computerChoice) => {
     computerScore ++;
@@ -44,10 +47,14 @@ const lose = (userChoice, computerChoice) => {
     userScore_span.innerHTML = userScore;
     result_div.innerHTML = 'Bot Won and the Call was ' + "<br>" +'User = ' +
     convertToWord(userChoice) + ' /  Bot = ' + convertToWord(computerChoice);
+    document.getElementById(userChoice).classList.add('red-glow');
+    setTimeout(() => { document.getElementById(userChoice).classList.remove('red-glow') }, 500);
 }
 const draw = (userChoice, computerChoice) => {
     result_div.innerHTML = 'Draw and the Call was ' + "<br>" +'User = ' +
     convertToWord(userChoice) + ' /  Bot = ' + convertToWord(computerChoice);
+    document.getElementById(userChoice).classList.add('black-glow');
+    setTimeout(() => { document.getElementById(userChoice).classList.remove('black-glow') }, 500);
 }
 
 
@@ -58,19 +65,16 @@ const game = (userChoice) => {
         case 'rs':
         case 'pr':
         case 'sp':
-            console.log('User Wins');
             win(userChoice, computerChoice);
             break;
         case 'rp':
         case 'ps':
         case 'sr':
-            console.log('User Loss');
             lose(userChoice, computerChoice)
             break;
         case 'rr':
         case 'pp':
         case 'ss':
-            console.log('Draw');
             draw(userChoice, computerChoice);
             break;        
     
@@ -82,17 +86,17 @@ const game = (userChoice) => {
 
 //call the value from the button
 const main = () => {
-rock_div.addEventListener('click', function(){
+rock_div.addEventListener('click', () => {
     game('r');
     moves ++;
     countMessage_p.innerHTML = moves + ' - Moves';
 })
-paper_div.addEventListener('click', function(){
+paper_div.addEventListener('click', () => {
     game('p');
     moves ++;
     countMessage_p.innerHTML = moves + ' - Moves';
 })
-scissors_div.addEventListener('click', function(){
+scissors_div.addEventListener('click', () => {
     game('s');
     moves ++;
     countMessage_p.innerHTML = moves + ' - Moves';
